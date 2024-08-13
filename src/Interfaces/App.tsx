@@ -59,7 +59,8 @@ function App() {
     responsive: true,
     fluid: true,
     sources: [{
-      src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      // src: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      src: 'vid.mp4',
       type: 'video/mp4'
     }]
   };
@@ -127,7 +128,7 @@ function App() {
             component="main"
             sx={{
               bgcolor: 'background.default',
-              minWidth: 1200,
+              minWidth: 400,
             }}
           >
 
