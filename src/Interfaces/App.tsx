@@ -49,6 +49,7 @@ const theme = createTheme({
 function App() {
   // const [width, setWidth] = useState(window.innerWidth);
   const [width, setWidth] = useState(window.innerWidth);
+  const [height, setHeight] = useState(window.innerHeight);
   const drawerWidth = width*(3/12);
 
   const playerRef = useRef(null);
@@ -81,64 +82,46 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Box sx={{
-          display: 'flex'
-        }}>
-          <CssBaseline />
-          <AppBar
-            position="fixed"
-            sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-          >
+        <CssBaseline />
+        <Box sx={{ display: 'flex' }}>
+
+          <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
-              <Typography variant="h5" noWrap component="div">
-                SD Islam Pembangunan
+              <Typography variant="h5" component="div">
+                Welcome to SD Islam Pembangunan!
               </Typography>
             </Toolbar>
           </AppBar>
-
           <Drawer
-            sx={{
-              width: drawerWidth/2,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: drawerWidth,
-                boxSizing: 'border-box',
-              },
-            }}
             variant="permanent"
-            anchor="left"
-          >
-
-            <Divider />
-            <List>
-              <ListItem><img src={'SD Islam Pembangunan.png'}/></ListItem>
-              <Divider />
-              <ListItem>
-
-                <Typography variant="h3" component="div">
-                  Today's Statistics
-                </Typography>
-              </ListItem>
-
-
-            </List>
-          </Drawer>
-          <Box
-            gap={1}
-            component="main"
             sx={{
-              bgcolor: 'background.default',
-              minWidth: 400,
+              width: drawerWidth,
+              flexShrink: 0,
+              [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
             }}
           >
-
-          <>
-            <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-          </>
-
+            <Toolbar />
+            <Box sx={{ overflow: 'auto' }}>
+              <List>
+                <ListItem><Typography variant="h4">Today's Statistic</Typography></ListItem>
+              </List>
+              <Divider />
+              <List>
+                <ListItem><Typography variant="h5">Current Time:</Typography></ListItem>
+              </List>
+            </Box>
+          </Drawer>
+          <Box component="main" sx={{
+              display: 'flex',
+              justifyContent: 'center'
+            }}>
+            <Box sx={{
+              width: 500
+              }}>
+              <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+            </Box>
           </Box>
         </Box>
-
       </ThemeProvider>
     </>
   )
